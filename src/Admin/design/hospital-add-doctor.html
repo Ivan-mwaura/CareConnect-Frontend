@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Meta -->
+		<meta name="description" content="Responsive Bootstrap Dashboards">
+		<meta name="author" content="Bootstrap Gallery">
+		<link rel="shortcut icon" href="img/favicon.svg" />
+
+		<!-- Title -->
+		<title>Medical Admin Template - Add Doctor</title>
+
+
+		<!-- *************
+			************ Common Css Files *************
+			************ -->
+		<!-- Bootstrap css -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Icomoon Font Icons css -->
+		<link rel="stylesheet" href="fonts/style.css">
+
+		<!-- Main css -->
+		<link rel="stylesheet" href="css/main.min.css">
+
+
+		<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+	</head>
+
+	<body>
+
+		<!-- Loading starts -->
+		<div id="loading-wrapper">
+			<div class="spinner-border" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+		<!-- Loading ends -->
+
+		<!-- Header start -->
+		<header class="header">
+			<div class="container-fluid">
+
+				<!-- Row start -->
+				<div class="row gutters">
+					<div class="col-sm-4 col-4">
+						<a href="index.html" class="logo">CareConnect<span></span></a>
+					</div>
+					<div class="col-sm-8 col-8">
+
+						<!-- Header actions start -->
+						<ul class="header-actions">
+							<li class="dropdown d-none d-sm-block">
+								<a href="#" class="contact">
+									<i class="icon-phone"></i> 0792466341
+								</a>
+							</li>
+							<li class="dropdown d-none d-sm-block">
+								<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true">
+									<i class="icon-bell"></i>
+									<span class="count-label"></span>
+								</a>
+								<div class="dropdown-menu lrg" aria-labelledby="notifications">
+									<div class="dropdown-menu-header">
+										<h5>Notifications</h5>
+										<p class="m-0 sub-title">You have 5 unread notifications</p>
+									</div>
+									<ul class="header-notifications">
+										<li>
+											<a href="#" class="clearfix">
+												<div class="avatar">
+													<img src="img/user24.png" alt="Medical Admin Dashboards" />
+													<span class="notify-iocn icon-drafts text-danger"></span>
+												</div>
+												<div class="details">
+													<h6>Dr. Clive</h6>
+													<p>Appointed as a new President 2021-2024</p>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="clearfix">
+												<div class="avatar">
+													<img src="img/user21.png" alt="Medical Admin Dashboards" />
+													<span class="notify-iocn icon-layers text-info"></span>
+												</div>
+												<div class="details">
+													<h6>Dr. G. Levsmia</h6>
+													<p>Will be on leave on October 2nd week.</p>
+												</div>
+											</a>
+										</li>
+										<li>
+											<a href="#" class="clearfix">
+												<div class="avatar">
+													<img src="img/user19.png" alt="Medical Admin Dashboards" />
+													<span class="notify-iocn icon-person_add text-success"></span>
+												</div>
+												<div class="details">
+													<h6>Dr. George S</h6>
+													<p>Sent new applointments list</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="dropdown">
+								<a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+									<span class="user-name">Evans Gachanja</span>
+									<span class="avatar">EG<span class="status busy"></span></span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
+									<div class="header-profile-actions">
+										<div class="header-user-profile">
+											<div class="header-user">
+												<img src="img/user11.png" alt="Medical Dashboards" />
+											</div>
+											<h5>Evans Gachanja</h5>
+											<p>Admin</p>
+										</div>
+										<a href="hospital-add-doctor.html"><i class="icon-user1"></i> My Profile</a>
+										<a href="account-settings.html"><i class="icon-settings1"></i> Account Settings</a>
+										<a href="hospital-reviews.html"><i class="icon-activity"></i> Activity Logs</a>
+										<a href="login.html"><i class="icon-log-out1"></i> Sign Out</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!-- Header actions end -->
+
+					</div>
+				</div>
+				<!-- Row end -->
+
+			</div>
+		</header>
+		<!-- Header end -->
+
+		<!-- *************
+			************ Header section end *************
+		************* -->
+
+
+		<div class="container-fluid">
+
+
+			<!-- Navigation start -->
+			<nav class="navbar navbar-expand-lg custom-navbar">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#royalHospitalsNavbar"
+					aria-controls="royalHospitalsNavbar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i></i>
+						<i></i>
+						<i></i>
+					</span>
+				</button>
+				<div class="collapse navbar-collapse" id="royalHospitalsNavbar">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active-page" href="index.html">
+								<i class="icon-devices_other nav-icon"></i>
+								Dashboard
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="doctoRs" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<i class="icon-users nav-icon"></i>
+								Doctors
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="doctoRs">
+								<li>
+									<a class="dropdown-item" href="hospital-doctors-list.html">Doctors List</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-locations.html">Hospital Locations</a>
+								</li>
+
+								<li>
+									<a class="dropdown-item" href="blog.html">News and Events</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-trainings.html">Staff Trainings</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-doctors.html">Doctors</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-patients.html">Patients</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-add-doctor.html">Add Doctor</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="hospital-add-patient.html">Add Patient</a>
+								</li>
+							</ul>
+						</li>
+						
+						
+					</ul>
+				</div>
+			</nav>
+			<!-- Navigation end -->
+
+
+			<!-- *************
+				************ Main container start *************
+			************* -->
+			<div class="main-container">
+
+
+				<!-- Page header start -->
+				<div class="page-header">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">Doctors</li>
+						<li class="breadcrumb-item active">Add Doctor Details</li>
+					</ol>
+					<div class="site-award">
+						<img src="img/award.svg" alt="Hospital Dashboards"> Best Hospital
+					</div>
+				</div>
+				<!-- Page header end -->
+
+				<!-- Content wrapper start -->
+				<div class="content-wrapper">
+
+					<!-- Row start -->
+					<div class="row gutters">
+						<div class="col-lg-3 col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="doctor-profile">
+										<div class="doctor-thumb">
+											<img src="img/user21.png" alt="UI Kits">
+										</div>
+										<div class="input-group mb-3">
+											<div class="custom-file">
+												<input type="file" class="custom-file-input" id="changeProfile"
+													aria-describedby="changeProfile">
+												<label class="custom-file-label" for="changeProfile">Update Image</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-sm-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Enter Doctor Details</div>
+								</div>
+								<div class="card-body">
+									<div class="row gutters">
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="fullName">Full Name</label>
+												<input type="text" class="form-control" id="fullName" placeholder="Srinu">
+											</div>
+										</div>
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="inputEmail">Email</label>
+												<input type="email" class="form-control" id="inputEmail" placeholder="doctor@bm.com">
+											</div>
+										</div>
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="education">Qualification</label>
+												<input type="text" class="form-control" id="education" placeholder="Qualification">
+											</div>
+										</div>
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="inputSpeciality">Speciality</label>
+												<input type="text" class="form-control" id="inputSpeciality" placeholder="Speciality">
+											</div>
+										</div>
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="addreSs">Full Address</label>
+												<textarea class="form-control" id="addreSs" rows="3" placeholder="Current Address"></textarea>
+											</div>
+										</div>
+										<div class=col-sm-6 col-12">
+											<div class="form-group">
+												<label for="biO">Bio</label>
+												<textarea class="form-control" id="biO" rows="3" placeholder="Description"></textarea>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="text-right">
+												<button class="btn btn-primary">Create Profile</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Create Account</div>
+								</div>
+								<div class="card-body">
+									<div class="row gutters">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label for="userName">User Name</label>
+												<input type="text" class="form-control" id="userName" placeholder="User Name">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label for="password">Password</label>
+												<input type="password" class="form-control" id="password" placeholder="Password">
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group">
+												<label for="rePassword">Re-enter Password</label>
+												<input type="password" class="form-control" id="rePassword" placeholder="New Password">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Row end -->
+
+				</div>
+				<!-- Content wrapper end -->
+
+			</div>
+			<!-- *************
+				************ Main container end *************
+			************* -->
+
+			<footer class="main-footer">© Bootstrap Gallery 2023</footer>
+
+		</div>
+
+		<!-- *************
+			************ Required JavaScript Files *************
+		************* -->
+		<!-- Required jQuery first, then Bootstrap Bundle JS -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/moment.js"></script>
+
+
+		<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+
+		<!-- Main Js Required -->
+		<script src="js/main.js"></script>
+
+	</body>
+
+</html>
