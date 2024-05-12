@@ -53,7 +53,7 @@
             height: 600px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-size: 20px;            
-            padding: 30px;
+            padding: 20px;
             background-color:white;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
@@ -63,6 +63,7 @@
       .highlight-word {
         display: flex;
         align-items: center;
+        color: black;
       }
   
   /* Line before the word */
@@ -70,7 +71,7 @@
          content: "";
             flex-grow: 1;
            height: 1px;
-          background-color: black;
+            background-color: black;
         }
   
   /* Line after the word */
@@ -131,6 +132,7 @@
           .highlight-word {
             display: flex;
             align-items: center;
+            color: black;
           }
   
         /* Line before the word */
@@ -185,6 +187,7 @@
       .highlight-word {
         display: flex;
         align-items: center;
+        color: black;
       }
   
       /* Line before the word */
@@ -214,6 +217,32 @@
                 width: 100%;
                 flex-direction: row;
                 gap: 10px;
+                color: black;
+                
+
+                .impact-card-1{
+                  
+                  .t2{
+                    color: black;
+                    font-size: 40px;
+
+                  }
+                }
+                .impact-card-2{
+                    
+                   .t2{
+                    color: black;
+                    font-size: 40px;
+                   }
+                }
+
+                .impact-card-3{
+                    
+                  .t3{
+                   color: black;
+                   font-size: 40px;
+                  }
+               }
 
             }
           }

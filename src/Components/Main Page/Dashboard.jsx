@@ -75,14 +75,14 @@ const Dashboard = () => {
 
                 <div className="impact-card-2">
                   <span>Over</span><br/>
-                  <h1><span>$42 million</span>,<br /></h1>
+                  <h1 className="t2">$42 million</h1><br/>
                   <span>invested to support awareness raising, community-led solutions, and advocacy for systems change.</span>
                 
                 </div>
 
                 <div className="impact-card-3">
                   <span>More than</span><br/>
-                  <h1><span>600,000</span><br/></h1>
+                  <h1 className="t3"><span>600,000</span><br/></h1>
                   <span>ndividuals engaged in advancing maternal health and birth equity.</span>
                 </div>
               </div>

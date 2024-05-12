@@ -1,21 +1,98 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdb-react-ui-kit';
 import './DataCollection.scss';
 import Select from 'react-select';
+import regionOptions from './data';
+import axios from 'axios';
+import { AppContext } from '../../Context/RoutesContext';
 
 const DataCollection = () => {
+
+  const{setDashboardRoute} = useContext(AppContext)
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    CurrAgeGroup: '',
+    Region: '',
+    PlaceofResidence: '', 
+    EducationLevel: '',
+    SexofHouseholdHead: '',
+    AgeofHouseholdHead: '',
+    WealthIndex: '',
+    Religion: '',
+    CurrentMaritalStatus: '',
+    FrequencyofWatchingTv: '',
+    FrequencyofListeningtoRadio: '',
+    FrequencyofUseofInternet: '',
+    DistanceToTheNearestHealthFacility: '',
+
   });
 
-  const handleChange = (e) => {
+  const handleSelect = (name, selectedOption) => {
+
+    setFormData({
+      ...formData,
+      [name]: selectedOption.value,
+    })
 
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
 
+  }
+
+  function getOptionLabel(value, options, defaultPlaceholder) {
+    if (!value) {
+      return defaultPlaceholder;
+    }
+    const option = options.find(opt => opt.value === value);
+    return option ? option.label : null;
+  }
+
+
+  const renameKeys = (obj) => {
+    const keyMap = {
+      AgeofHouseholdHead: "Head age",
+      CurrAgeGroup: "CurrAgeGroup",
+      CurrentMaritalStatus: "Current marital_status",
+      DistanceToTheNearestHealthFacility: "Distance to health",
+      EducationLevel: "Education level",
+      FrequencyofListeningtoRadio: "Freq. of listening to radio",
+      FrequencyofUseofInternet: "Freq. use internet",
+      FrequencyofWatchingTv: "Freq. of watching TV",
+      PlaceofResidence: "Place of Residence",
+      Region: "Region",
+      Religion: "Religion",
+      SexofHouseholdHead: "Head sex",
+      WealthIndex: "wealth index",
+    };
+  
+    return Object.keys(obj).reduce((acc, key) => {
+      acc[keyMap[key]] = obj[key];
+      return acc;
+    }, {});
+  };
+
+
+const formattedData = renameKeys(formData);
+console.log(formattedData);
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:8000/predict/', formattedData, {
+      headers: { 'Content-Type': 'application/json' }
+    }).then((res) => {
+      console.log(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    setDashboardRoute('feedback')
   };
 
 
@@ -33,87 +110,153 @@ const DataCollection = () => {
 
         <div className='category-1'>
             <span className='category-1-title'>Social Demographic Factors</span>
-            <MDBInput
-            className='mb-4 w-50'
-              label="Region"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+            <Select
+              className="mb-4"
+              placeholder={getOptionLabel(formData.CurrAgeGroup, [
+                { value: '1', label: '15-19' },
+                { value: '2', label: '20-24' },
+                { value: '3', label: '25-29' },
+                { value: '4', label: '30-34' },
+                { value: '5', label: '35-39' },
+                { value: '6', label: '40-44' },
+                { value: '7', label: '45-49' },
+              ], "Current Age Group")}
+              name='CurrAgeGroup'
+              value={formData.CurrAgeGroup}
+              onChange={(selectedOption) => handleSelect('CurrAgeGroup', selectedOption)}
+              options={[
+                { value: '1', label: '15-19' },
+                { value: '2', label: '20-24' },
+                { value: '3', label: '25-29' },
+                { value: '4', label: '30-34' },
+                { value: '5', label: '35-39' },
+                { value: '6', label: '40-44' },
+                { value: '7', label: '45-49' },
+              ]}
+              
             />
-            <MDBInput
-                className='mb-4'
-              label="Occupation"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
+            <Select
+              className="mb-4"
+              placeholder={getOptionLabel(formData.Region, regionOptions, "Region")}
+              name='Region'
+              value={formData.Region}
+              onChange={(selectedOption) => handleSelect('Region', selectedOption)}
+              options={regionOptions}
             />
-            <MDBInput
-            className='mb-4'
-              label="HouseHold Number"
-              type="textarea"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
+
+            <Select
+              className="mb-4"
+              placeholder={getOptionLabel(formData.PlaceofResidence, [
+                { value: '1', label: 'Urban' },
+                { value: '2', label: 'Rural' },
+              ], "Place of Residence")}
+              name='PlaceofResidence'
+              value={formData.PlaceofResidence}
+              onChange={(selectedOption) => handleSelect('PlaceofResidence', selectedOption)}
+              options={[
+                { value: '1', label: 'Urban' },
+                { value: '2', label: 'Rural' },
+              ]}
             />
+
+              <Select
+              className="mb-4"
+              placeholder={getOptionLabel(formData.EducationLevel, [
+                { value: '0', label: 'No Education' },
+                { value: '1', label: 'Primary Level' },
+                { value: '2', label: 'Secondary Level' },
+                { value: '3', label: 'Higher Level' },
+              ], "Education Level")}
+              name='EducationLevel'
+              value={formData.EducationLevel}
+              onChange={(selectedOption) => handleSelect('EducationLevel', selectedOption)}
+              options={[
+                { value: '0', label: 'No Education' },
+                { value: '1', label: 'Primary Level' },
+                { value: '2', label: 'Secondary Level' },
+                { value: '3', label: 'Higher Level' },
+              ]}
+            />
+              <Select
+              className="mb-4"
+              placeholder={getOptionLabel(formData.SexofHouseholdHead, [
+                { value: '1', label: 'Male' },
+                { value: '2', label: 'Female' },
+              ], "Sex of Household Head")}
+              name='SexofHouseholdHead'
+              value={formData.SexofHouseholdHead}
+              onChange={(selectedOption) => handleSelect('SexofHouseholdHead', selectedOption)}
+              options={[
+                { value: '1', label: 'Male' },
+                { value: '2', label: 'Female' },
+              ]}
+            />
+            
             <MDBInput
             className='mb-4'
               label="Age of Household Head"
               type="textarea"
-              name="message"
-              value={formData.message}
+              name="AgeofHouseholdHead"
+              value={formData.AgeofHouseholdHead}
               onChange={handleChange}
               required
             />
-            
-            <Select
+
+              <Select
               className="mb-4"
-              placeholder="Age Group"
-              value={formData.selectOption}
-              onChange={handleChange}
+              placeholder={getOptionLabel(formData.WealthIndex, [
+                { value: '1', label: 'Poorest Level' },
+                { value: '2', label: 'Poorer level' },
+                { value: '3', label: 'Middle level' },
+                { value: '2', label: 'Richer' },
+              ], "Wealth Index")}
+              name='WealthIndex'
+              value={formData.WealthIndex}
+              onChange={(selectedOption) => handleSelect('WealthIndex', selectedOption)}
               options={[
-                { value: '18 -25', label: '18 - 25' },
-                { value: '25 - 35', label: '25 - 35' },
-                { value: '35 - 25', label: '35 - 45' },
+                { value: '1', label: 'Poorest Level' },
+                { value: '2', label: 'Poorer level' },
+                { value: '3', label: 'Middle level' },
+                { value: '2', label: 'Richer' },
               ]}
             />
 
             <Select
-                className="mb-4"
-                placeholder="Education Level"
-                value={formData.selectOption}
-                onChange={handleChange}
-                options={[
-                  { value: 'Primary', label: 'Primary' },
-                  { value: 'Secondary', label: 'Secondary' },
-                  { value: 'Tertiary', label: 'Tertiary' },
-                ]}
-            />
-
-            <Select
-                className="mb-4"
-                placeholder="Marital Status"
-                value={formData.selectOption}
-                onChange={handleChange}
-                options={[
-                  { value: 'Single', label: 'Single' },
-                  { value: 'Married', label: 'Married' },
-                  { value: 'Divorced', label: 'Divorced' },
-                ]}
+              className="mb-4"
+              placeholder={getOptionLabel(formData.Religion, [
+                { value: '1', label: 'Protestant' },
+                { value: '2', label: 'Evangelical Churches' },
+                { value: '3', label: 'Africa Institutical Churches' },
+              ], "Religion")}
+              name='Religion'
+              value={formData.Religion}
+              onChange={(selectedOption) => handleSelect('Religion', selectedOption)}
+              options={[
+                { value: '1', label: 'Protestant' },
+                { value: '2', label: 'Evangelical Churches' },
+                { value: '3', label: 'Africa Institutical Churches' },
+              ]}
             />
             <Select
                 className="mb-4"
-                placeholder="Birth Order"
-                value={formData.selectOption}
-                onChange={handleChange}
+                placeholder={getOptionLabel(formData.CurrentMaritalStatus, [
+                  { value: '0', label: 'Never in Union' },
+                  { value: '1', label: 'Married' },
+                  { value: '2', label: 'Living with partner' },
+                  { value: '3', label: 'Widowed' },
+                  { value: '4', label: 'Divorced'},
+                  { value: '5', label: 'No longer living togther/ Separated' },
+                ], "Current Marital Status")}
+                name='CurrentMaritalStatus'
+                value={formData.CurrentMaritalStatus}
+                onChange={(selectedOption) => handleSelect('CurrentMaritalStatus', selectedOption)}
                 options={[
-                  { value: '1', label: 'First born' },
-                  { value: '2', label: 'Second Born' },
-                  { value: '3', label: 'Third born' },
+                  { value: '0', label: 'Never in Union' },
+                  { value: '1', label: 'Married' },
+                  { value: '2', label: 'Living with partner' },
+                  { value: '3', label: 'Widowed' },
+                  { value: '4', label: 'Divorced'},
+                  { value: '5', label: 'No longer living togther/ Separated' },
                 ]}
             />
         </div>
@@ -124,12 +267,51 @@ const DataCollection = () => {
             <span className='category-2-title'>Awareness to MNCH</span>
             <Select
                 className="mb-4"
-                placeholder="Ever heard of MNCH? through radio or  TV"
-                value={formData.selectOption}
-                onChange={handleChange}
+                placeholder={getOptionLabel(formData.FrequencyofWatchingTv, [
+                  { value: '0', label: 'Not at all' },
+                  { value: '1', label: 'less than once in a Week' },
+                  { value: '2', label: 'Atleast once in a week' },
+                ], "Frequency of Watching Tv")}
+                name='FrequencyofWatchingTv'
+                value={formData.FrequencyofWatchingTv}
+                onChange={(selectedOption) => handleSelect('FrequencyofWatchingTv', selectedOption)}
                 options={[
-                  { value: 'Yes', label: 'Yes' },
-                  { value: 'No', label: 'No' },
+                  { value: '0', label: 'Not at all' },
+                  { value: '1', label: 'less than once in a Week' },
+                  { value: '2', label: 'Atleast once in a week' },
+                ]}
+            />
+            <Select
+                className="mb-4"
+                placeholder={getOptionLabel(formData.FrequencyofListeningtoRadio, [
+                  { value: '0', label: 'Not at all' },
+                  { value: '1', label: 'less than once in a Week' },
+                  { value: '2', label: 'Atleast once in a week' },
+                ], "Frequency of Listening to Radio")}
+                name='FrequencyofListeningtoRadio'
+                value={formData.FrequencyofListeningtoRadio}
+                onChange={(selectedOption) => handleSelect('FrequencyofListeningtoRadio', selectedOption)}
+                options={[
+                  { value: '0', label: 'Not at all' },
+                  { value: '1', label: 'less than once in a Week' },
+                  { value: '2', label: 'Atleast once in a week' },
+                ]}
+            />
+
+            <Select
+                className="mb-4"
+                placeholder={getOptionLabel(formData.FrequencyofUseofInternet, [
+                  { value: '0', label: 'Never Used' },
+                  { value: '1', label: 'yes' },
+                  { value: '2', label: 'Yes, before last 12 months ' },
+                ], "Frequency of Use of Internet")}
+                name='FrequencyofUseofInternet'
+                value={formData.FrequencyofUseofInternet}
+                onChange={(selectedOption) => handleSelect('FrequencyofUseofInternet', selectedOption)}
+                options={[
+                  { value: '0', label: 'Never Used' },
+                  { value: '1', label: 'yes' },
+                  { value: '2', label: 'Yes, before last 12 months ' },
                 ]}
             />
 
@@ -139,22 +321,29 @@ const DataCollection = () => {
         <div className='category-3'>
 
             <span className='category-3-title'>Health Facility Access</span>
-                <MDBInput
-                    className='mb-4 '
-                    label='Distance to the nearest health facility'
-                    type='text'
-                    name='name'
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
+
+            <Select
+                className="mb-4"
+                placeholder={getOptionLabel(formData.DistanceToTheNearestHealthFacility, [
+                  { value: '1', label: 'Big problem' },
+                  { value: '2', label: 'Not a big problem' },
+                ], "Distance To The Nearest Health Facility")}
+                name='DistanceToTheNearestHealthFacility'
+                value={formData.DistanceToTheNearestHealthFacility}
+                onChange={(selectedOption) => handleSelect('DistanceToTheNearestHealthFacility', selectedOption)}
+                options={[
+                  { value: '1', label: 'Big problem' },
+                  { value: '2', label: 'Not a big problem' },
+                ]}
+            />
+
             </div>
 
         </div>
 
        
         <div className="text-center">
-              <MDBBtn type="submit">Submit</MDBBtn>
+              <MDBBtn type="submit" onClick={handleSubmit}>Submit</MDBBtn>
             </div>
          </form>
         </MDBCol>

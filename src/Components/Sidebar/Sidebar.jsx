@@ -42,12 +42,15 @@ const Sidebar = () => {
    else if(route === 'dataCollection'){
       setDashboardRoute("dataCollection");    
    }
-   else if(route === 'registerWoman'){
-    setDashboardRoute('registerWoman')
+   else if(route === 'registerwoman'){
+    setDashboardRoute('registerwoman')
 
    }else if(route === 'newsandevents'){
     setDashboardRoute('newsandevents')
-   }else(
+   }else if(route === 'feedback'){
+    setDashboardRoute('feedback')
+   }
+   else(
     setDashboardRoute('homepage')
    )
 
@@ -62,7 +65,7 @@ const Sidebar = () => {
     	/>
      <div className={`bg-white sidebar ${isSidebarOpen ? 'show' : ''}`}>
         <div className="position-sticky">
-          <MDBListGroup className="mx-3 mt-4" style={{paddingBo:'30px'}}>
+          <MDBListGroup className="mx-3 mt-4" style={{paddingBottom:'30px'}}>
 
             <MDBRipple rippleTag='span'  className='sidebar-options'>
               <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded rounded' id = "navbar-list-group" onClick={() => handleRoute("homepage")}>
@@ -86,7 +89,7 @@ const Sidebar = () => {
             </MDBRipple>
 
            {isChw &&  <MDBRipple rippleTag='span' className='sidebar-options'>
-              <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded' id = "navbar-list-group" onClick={() => handleRoute('registerWoman')}>
+              <MDBListGroupItem tag='a' href='#' action className='border-0 border-bottom rounded' id = "navbar-list-group" onClick={() => handleRoute('registerwoman')}>
                 <MDBIcon fas icon="chart-line me-3" />
                 Add woman
               </MDBListGroupItem>

@@ -15,7 +15,7 @@ const Navbar = () => {
     return(
 <>          {/*Navbar*/}
 
-      <MDBNavbar expand='lg' light bgColor='light' className='navbar-container' style={{height:'70px'}}>
+      <MDBNavbar expand='lg' light bgColor='white' className='navbar-container' style={{height:'70px'}}>
         <MDBContainer fluid>
           <MDBNavbarNav className="flex-row align-items-center ">
             <MDBNavbarToggler
@@ -48,8 +48,8 @@ const Navbar = () => {
             <MDBNavbarItem className='me-3 me-lg-0 d-flex align-items-center' >
               <MDBDropdown>
 
-                <MDBDropdownToggle tag="a" href="#!" className="hidden-arrow nav-link mx-2">
-                  <MDBIcon fas icon="bell" />
+                <MDBDropdownToggle tag="a" href="#!"  >
+                  <MDBIcon fas icon="bell"  />
                   <MDBBadge color='danger' notification pill>
                     1
                   </MDBBadge>
@@ -70,13 +70,13 @@ const Navbar = () => {
             </MDBNavbarItem>
 
 
-            <MDBNavbarItem className='me-3 me-lg-0'>
-              <MDBNavbarLink href='#' className='mx-2'>
+            <MDBNavbarItem >
+              <MDBNavbarLink href='#' >
                 <MDBIcon fas icon='fill-drip' />
               </MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem className='me-3 me-lg-0'>
-              <MDBNavbarLink href='#' className='mx-2'>
+            <MDBNavbarItem >
+              <MDBNavbarLink href='#' >
                 <MDBIcon fab icon='github' />
               </MDBNavbarLink>
             </MDBNavbarItem>
